@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 const PORT = 3000;
 
 
+
 const secretKey = 'My super secret key';
 //defining mw
 const jwtMW = exjwt({
@@ -51,12 +52,13 @@ app.post('/api/login', (req, res) => {
         
     for(let user of users){
         if(username == user.username && password == user.password){
-            let token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '3minutes'});
+            let token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '15seconds'});
             res.json({
                 success:true,
                 err: null,
                 token
             });
+          
             break;
        }
        else{
